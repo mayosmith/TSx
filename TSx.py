@@ -1,5 +1,6 @@
 import requests
 import json
+import numpy as np
 
 # Define the API endpoint and parameters
 url = "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/mts/mts_table_5"
@@ -29,9 +30,13 @@ if response.status_code == 200:
 
   # Calculate the sum of the extracted values
     total_net_outlays = sum(net_outlays)
+  # Calculate the std of the extracted values
+    std_dev_net_outlays = np.std(net_outlays,ddof=1)
 
-    # Print the extracted elements
+    # Print the Total Net Outlays
     print("Total Net Outlays:", total_net_outlays)
+    # Print the Std Net Outlays
+    print("Std Net Outlays:", std_dev_net_outlays)
 
 
         # Save the response data to a file
